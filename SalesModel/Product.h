@@ -6,7 +6,7 @@ using namespace System;
 
 namespace SalesModel {
     public ref class Product {
-    private:
+    protected:
         int id;
         void Activate();        
 
