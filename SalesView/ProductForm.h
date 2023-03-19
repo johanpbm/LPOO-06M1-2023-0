@@ -50,7 +50,8 @@ namespace SalesView {
 	private: System::Windows::Forms::TextBox^ txtPriceMin;
 	private: System::Windows::Forms::TextBox^ txtPriceMaj;
 	private: System::Windows::Forms::TextBox^ txtStock;
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::PictureBox^ pbPhoto;
+
 	private: System::Windows::Forms::Button^ btnAdd;
 	private: System::Windows::Forms::Button^ btnUpdate;
 	private: System::Windows::Forms::Button^ btnDelete;
@@ -61,6 +62,7 @@ namespace SalesView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productPriceMin;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ productPriceMaj;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ProductStock;
+	private: System::Windows::Forms::Button^ btnSetImage;
 
 	private:
 		/// <summary>
@@ -87,7 +89,7 @@ namespace SalesView {
 			this->txtPriceMin = (gcnew System::Windows::Forms::TextBox());
 			this->txtPriceMaj = (gcnew System::Windows::Forms::TextBox());
 			this->txtStock = (gcnew System::Windows::Forms::TextBox());
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->pbPhoto = (gcnew System::Windows::Forms::PictureBox());
 			this->btnAdd = (gcnew System::Windows::Forms::Button());
 			this->btnUpdate = (gcnew System::Windows::Forms::Button());
 			this->btnDelete = (gcnew System::Windows::Forms::Button());
@@ -97,7 +99,8 @@ namespace SalesView {
 			this->productPriceMin = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->productPriceMaj = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->ProductStock = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->btnSetImage = (gcnew System::Windows::Forms::Button());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbPhoto))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProducts))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -166,7 +169,7 @@ namespace SalesView {
 			// 
 			this->txtName->Location = System::Drawing::Point(172, 81);
 			this->txtName->Name = L"txtName";
-			this->txtName->Size = System::Drawing::Size(263, 20);
+			this->txtName->Size = System::Drawing::Size(222, 20);
 			this->txtName->TabIndex = 7;
 			// 
 			// txtDescription
@@ -174,7 +177,7 @@ namespace SalesView {
 			this->txtDescription->Location = System::Drawing::Point(172, 108);
 			this->txtDescription->Multiline = true;
 			this->txtDescription->Name = L"txtDescription";
-			this->txtDescription->Size = System::Drawing::Size(263, 54);
+			this->txtDescription->Size = System::Drawing::Size(222, 54);
 			this->txtDescription->TabIndex = 8;
 			// 
 			// txtPriceMin
@@ -198,14 +201,15 @@ namespace SalesView {
 			this->txtStock->Size = System::Drawing::Size(100, 20);
 			this->txtStock->TabIndex = 11;
 			// 
-			// pictureBox1
+			// pbPhoto
 			// 
-			this->pictureBox1->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->pictureBox1->Location = System::Drawing::Point(471, 54);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(159, 172);
-			this->pictureBox1->TabIndex = 12;
-			this->pictureBox1->TabStop = false;
+			this->pbPhoto->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->pbPhoto->Location = System::Drawing::Point(427, 54);
+			this->pbPhoto->Name = L"pbPhoto";
+			this->pbPhoto->Size = System::Drawing::Size(203, 172);
+			this->pbPhoto->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->pbPhoto->TabIndex = 12;
+			this->pbPhoto->TabStop = false;
 			// 
 			// btnAdd
 			// 
@@ -235,6 +239,7 @@ namespace SalesView {
 			this->btnDelete->TabIndex = 15;
 			this->btnDelete->Text = L"Eliminar";
 			this->btnDelete->UseVisualStyleBackColor = true;
+			this->btnDelete->Click += gcnew System::EventHandler(this, &ProductForm::btnDelete_Click);
 			// 
 			// dgvProducts
 			// 
@@ -279,16 +284,27 @@ namespace SalesView {
 			this->ProductStock->Name = L"ProductStock";
 			this->ProductStock->Width = 70;
 			// 
+			// btnSetImage
+			// 
+			this->btnSetImage->Location = System::Drawing::Point(449, 232);
+			this->btnSetImage->Name = L"btnSetImage";
+			this->btnSetImage->Size = System::Drawing::Size(159, 23);
+			this->btnSetImage->TabIndex = 17;
+			this->btnSetImage->Text = L"Establecer imagen";
+			this->btnSetImage->UseVisualStyleBackColor = true;
+			this->btnSetImage->Click += gcnew System::EventHandler(this, &ProductForm::btnSetImage_Click);
+			// 
 			// ProductForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(680, 543);
+			this->Controls->Add(this->btnSetImage);
 			this->Controls->Add(this->dgvProducts);
 			this->Controls->Add(this->btnDelete);
 			this->Controls->Add(this->btnUpdate);
 			this->Controls->Add(this->btnAdd);
-			this->Controls->Add(this->pictureBox1);
+			this->Controls->Add(this->pbPhoto);
 			this->Controls->Add(this->txtStock);
 			this->Controls->Add(this->txtPriceMaj);
 			this->Controls->Add(this->txtPriceMin);
@@ -303,7 +319,7 @@ namespace SalesView {
 			this->Controls->Add(this->label1);
 			this->Name = L"ProductForm";
 			this->Text = L"ProductForm";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbPhoto))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProducts))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -319,6 +335,11 @@ namespace SalesView {
 		product->PriceMaj = Convert::ToDouble(txtPriceMaj->Text);
 		product->Stock = Convert::ToInt32(txtStock->Text);
 		product->Status = 'A';
+		if (pbPhoto != nullptr && pbPhoto->Image != nullptr) {
+			System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
+			pbPhoto->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+			product->Photo = ms->ToArray();
+		}
 
 		Controller::AddProduct(product);
 
@@ -342,7 +363,13 @@ namespace SalesView {
 	}
 
 	void CleanControls() {
-		txtProductId->Text = "";
+		txtProductId->Clear();
+		txtName->Clear();
+		txtDescription->Clear();
+		txtPriceMin->Clear();
+		txtPriceMaj->Clear();
+		txtStock->Clear();
+		pbPhoto->Image = nullptr;
 	}
 
 private: System::Void dgvProducts_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
@@ -355,6 +382,14 @@ private: System::Void dgvProducts_CellClick(System::Object^ sender, System::Wind
 	txtPriceMin->Text = "" +p->PriceMin;
 	txtPriceMaj->Text = "" + p->PriceMaj;
 	txtStock->Text = "" + p->Stock;
+	if (p->Photo != nullptr) {
+		System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream(p->Photo);
+		pbPhoto->Image = Image::FromStream(ms);
+	}
+	else {
+		pbPhoto->Image = nullptr;
+		pbPhoto->Invalidate();
+	}
 }	
 
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -366,11 +401,34 @@ private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^
 	product->PriceMaj = Convert::ToDouble(txtPriceMaj->Text);
 	product->Stock = Convert::ToInt32(txtStock->Text);
 	product->Status = 'A';
+	if (pbPhoto != nullptr && pbPhoto->Image != nullptr) {
+		System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
+		pbPhoto->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+		product->Photo = ms->ToArray();
+	}
 
 	Controller::UpdateProduct(product);
 	CleanControls();
 	ShowProducts();
 
+}
+private: System::Void btnSetImage_Click(System::Object^ sender, System::EventArgs^ e) {
+	OpenFileDialog^ opnfd = gcnew OpenFileDialog();
+	opnfd->Filter = "Image Files (*.jpg;*.jpeg;)|*.jpg;*.jpeg;";
+	if (opnfd->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+	{
+		pbPhoto->Image = gcnew Bitmap(opnfd->FileName);
+	}
+
+}
+private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (txtProductId->Text->Trim() == "") {
+		MessageBox::Show("Debe seleccionar un producto");
+		return;
+	}
+	Controller::DeleteProduct(Convert::ToInt32(txtProductId->Text->Trim()));
+	CleanControls();
+	ShowProducts();
 }
 };
 }

@@ -10,7 +10,7 @@ int main(array<System::String ^> ^args)
     Product^ product1 = gcnew Product();
     product1->setId(1);
     product1->Name = "Jábón Mongler";
-    product1->Description = "Jabón familiar";
+    product1->Description = "Jabón familiar de uso diario" ;
     product1->PriceMin = 4.5;
     product1->PriceMaj = 3.7;
     product1->Stock = 100;

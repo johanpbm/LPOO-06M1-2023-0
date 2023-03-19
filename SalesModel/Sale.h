@@ -4,8 +4,10 @@
 #pragma once
 #include "Salesman.h"
 #include "Customer.h"
+#include "SaleDetail.h"
 
 using namespace System;
+using namespace System::Collections::Generic;
 
 namespace SalesModel {
     public ref class Sale {
@@ -16,5 +18,10 @@ namespace SalesModel {
         property double Total;
         property Salesman^ Salesman;
         property Customer^ Customer;
+        property List<SaleDetail^>^ SaleDetails;
+
+        Sale() {
+            SaleDetails = gcnew List<SaleDetail^>();
+        }
     };
 }
